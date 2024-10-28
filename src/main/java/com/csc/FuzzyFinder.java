@@ -1,8 +1,51 @@
 package com.csc;
 
+import java.util.*;
+
 public class FuzzyFinder {
   // Your code goes here!
   public static void main(String args[]) {
-    System.out.println("In addition to your search functions, you can write a main function if you wish!");
+    FuzzyListGenerator generator = new FuzzyListGenerator();
+    FuzzyFinder finder = new FuzzyFinder();
+
+    ArrayList<Fuzzy> sortedFuzzies = generator.sortedRainbowFuzzies();
+    ArrayList<Fuzzy> randomFuzzies = generator.randomizedRainbowFuzzies();
+
+    int testOne = finder.linearSearch(sortedFuzzies);
+    int testTwo = finder.binarySearch(sortedFuzzies);
+    int testThree = finder.linearSearch(randomFuzzies);
+    int testFour = finder.binarySearch(randomFuzzies);
+    
+    System.out.println(testOne);
+    System.out.println(testTwo);
+    System.out.println(testThree);
+    System.out.println(testFour);
+  }
+  
+  public static int linearSearch(ArrayList<Fuzzy> list) {
+    for(int i = 0; i < list.size(); i++) {
+      if(list.get(i).color.equals("gold")) return i;
+    }
+    
+    return -1;
+  }
+  
+  public static int binarySearch(ArrayList<Fuzzy> list) {
+    int start = 0;
+    int end = list.size();
+    
+    while(true) {
+      int i = (start + end) / 2;
+      
+      if(list.get(i).color.compareTo("gold") < 0) {
+        start = i;
+      } else if (list.get(i).color.compareTo("gold") > 0) {
+        end = i;
+      } else {
+        return i;
+      }
+      
+      if(start == end - 1) return -1;
+    }
   }
 }
