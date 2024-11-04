@@ -7,19 +7,15 @@ public class FuzzyFinder {
   public static void main(String args[]) {
     FuzzyListGenerator generator = new FuzzyListGenerator();
     FuzzyFinder finder = new FuzzyFinder();
-
+    
     ArrayList<Fuzzy> sortedFuzzies = generator.sortedRainbowFuzzies();
     ArrayList<Fuzzy> randomFuzzies = generator.randomizedRainbowFuzzies();
-
-    int testOne = finder.linearSearch(sortedFuzzies);
-    int testTwo = finder.binarySearch(sortedFuzzies);
-    int testThree = finder.linearSearch(randomFuzzies);
-    int testFour = finder.binarySearch(randomFuzzies);
     
-    System.out.println(testOne);
-    System.out.println(testTwo);
-    System.out.println(testThree);
-    System.out.println(testFour);
+    System.out.print(finder.binarySearch(sortedFuzzies));
+    System.out.print(" ");
+    System.out.print(finder.linearSearch(sortedFuzzies));
+    System.out.println();
+    System.out.println(finder.linearSearch(randomFuzzies));
   }
   
   public static int linearSearch(ArrayList<Fuzzy> list) {

@@ -11,22 +11,21 @@ public class TestFuzzyFinder {
 
   FuzzyFinder finder;
   FuzzyListGenerator generator;
+  ArrayList<Fuzzy> randomFuzzies;
 
   @BeforeEach
   void setUp() {
     finder = new FuzzyFinder();
     generator = new FuzzyListGenerator();
+    
+    randomFuzzies = generator.randomizedRainbowFuzzies();
   }
-
+  
   @Test
-  void exampleFailingTestWithRandomizedFuzzies() {
-    ArrayList<Fuzzy> fuzzies = generator.randomizedRainbowFuzzies();
-    assertEquals("purple", fuzzies.getFirst().color);
-  }
-
-  @Test
-  void exampleFailingTestWithSortedFuzzies() {
-    ArrayList<Fuzzy> fuzzies = generator.sortedRainbowFuzzies();
-    assertEquals("purple", fuzzies.getFirst().color);
+  void linearSearchSorted() {
+    ArrayList<Fuzzy> sortedFuzzies = generator.sortedRainbowFuzzies();
+    
+    assertEquals(finder.binarySearch(sortedFuzzies), finder.linearSearch(sortedFuzzies));
+    assertEquals(true, finder.linearSearch(randomFuzzies) != -1);
   }
 }

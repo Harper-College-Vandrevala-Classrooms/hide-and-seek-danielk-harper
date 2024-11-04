@@ -24,3 +24,12 @@ In a terminal from the root of the project, type `gradle run` into the command l
 ## Testing
 
 In a terminal from the root of the project, type `gradle test` into the command line. This will run all of the automated tests.
+
+
+## Runtime Analysis (Four Credits Total, 2 for each algorithm)
+
+Linear search analysis:
+
+The worst case scenario running time for linear search on a randomized list of fuzzies occurs when the golden fuzzy appears at the end of the list, meaning the worst case running time would be O(n), with n being the length of the list.
+
+The worst case scenario running time for binary search on a randomized list of fuzzies occurs when the list is "split" in half over and over until the last element, with the last element still not being the golden fuzzy. This occurs with the O(log(n)), with n being the length of the list. This is because, to double the running time, you have to double the number of elements.
